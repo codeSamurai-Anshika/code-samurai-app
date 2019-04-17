@@ -8,15 +8,17 @@
 
     <form method="post" action="saveitem">
 
+            Book Title: <input type="text" name="booktitle" value="" required/>
 
+            Author: <input type="text" name="author" value="" required />
 
+            Summary on Book: <input type="text" name="summaryonbook" value="" required/>
+          Date: <input type="date" name="date" value="" required/>
+            Site: <input type="url" name="site" value=""required />
 
-
-
-        Added by: <input type="text" name="addedBy" value="<%=loginName%>" readonly/>
+            Added by: <input type="text" name="addedBy" value="<%=loginName%>"  required/>
 
         <button class="btn" type="submit" name="submit">Save Item</button>
-
     </form>
 
 </div>

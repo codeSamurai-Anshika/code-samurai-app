@@ -98,7 +98,12 @@ app.get('/additem', function (request, response) {
     response.render('addpage',{loginName:request.session.user});
 });
 
-
+app.get('/like', function (request, response) {
+    //response.render('listpage', {message: "one Like"});
+    var itemName = request.query.book;
+    var itemValue = 1;
+    var likeandsort = likeAndSort(itemName, itemValue);
+});
 
 // click Welcome on login page
 app.post('/login', function (request, response) {
@@ -111,7 +116,15 @@ app.post('/login', function (request, response) {
     //hint: check is password is good or not, if not load same page with error as below
     //response.render('index', {message: "Invalid user name or password"});
 
-    response.render('listpage', {items: Item.find()});
+    var passwordmatch=userPasswordMatch( loginName,password);
+    if(passwordmatch)
+        {
+            response.render('listpage', {items: Item.find()});
+
+        }
+        else {
+            response.render('index', {message: "Invalid user name or password"});
+        }
 
 });
 
@@ -123,6 +136,7 @@ app.post('/saveitem', function (request, response) {
     // hint #1: find the helper function that will help save the information first
     // hint #2: make sure to send the list of items to the list page
 
-    response.render('listpage',{ items:[] });
+    var alltiems = saveFormAndReturnAllItems(request.body);
+    response.render('listpage',{ items:alltiems });
 });
 
