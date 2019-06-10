@@ -92,6 +92,10 @@ app.get('/', function (request, response) {
     response.render('index', {message: null});
 });
 
+// load list page
+app.get('/login', function (request, response) {
+    response.render('listpage', {items: Item.find()});
+});
 
 // when the link Add New Item is clicked - links or <a> tags always send "get" not "post"
 app.get('/additem', function (request, response) {
@@ -99,10 +103,10 @@ app.get('/additem', function (request, response) {
 });
 
 app.get('/like', function (request, response) {
-    //response.render('listpage', {message: "one Like"});
-    var itemName = request.query.book;
-    var itemValue = 1;
+    var itemName = "booktitle";
+    var itemValue = request.query.book;
     var likeandsort = likeAndSort(itemName, itemValue);
+    response.render('listpage', {items:likeandsort});
 });
 
 // click Welcome on login page

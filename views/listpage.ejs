@@ -16,8 +16,8 @@
             <th>Date</th>
             <th>Site</th>
             <th>Added By</th>
-            <th>Likes</th>
-            <th>Actions</th>
+            <th>thumbs_up</th>
+            <th>thumbs_down</th>
         </tr>
 
         <% items.forEach(function(item){  %>
@@ -26,9 +26,12 @@
             <td><%= item.author %></td>
             <td><%= item.summaryonbook %></td>
             <td><%= item.date %></td>
-            <td><%= item.site%></td>
+            <td><a href="<%= item.site %>" target="opensesame">site</a> </td>
             <td><%= item.addedBy %></td>
-            <td><a href="/like?book=<% item.booktitle %>" class="material-icon"><i>thumbs-up</i></a></td>
+            <td><a href="/like?book=<% item.booktitle %>"><i class="material-icon">thumbs_up</i></a></td>
+            <td><a href="/dislike?book=<% item.booktitle %>" ><i class="material-icon">thumbs_down</i></a></td>
+
+
         </tr>
         <% }) %>
     </table>
